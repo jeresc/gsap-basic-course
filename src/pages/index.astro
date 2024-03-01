@@ -1,0 +1,84 @@
+---
+
+---
+
+<script>
+  import {gsap} from 'gsap'
+
+  const timeline = gsap.timeline({defaults: {ease: 'power4.out', duration: 1}})
+  const button = document.querySelector('.reverse')
+
+  timeline
+    .from('.header', {y: '-100%'})
+    .from('.right', {duration: 2, x: '100%'}, '<')
+    .from('.left', {duration: 2, x: '-100%'}, '<')
+    .from('.footer', {duration: 1, y: '100%'}, '<')
+    .from(
+      '.link',
+      {
+        duration: 0.5,
+        scale: 0,
+        stagger: 0.3,
+      },
+      1
+    )
+    .from(button, {
+      scale: 0,
+      rotate: 90,
+      duration: 1.3,
+    })
+
+  if (button !== null) {
+    button.addEventListener('click', () => {
+      timeline.timeScale(1.3)
+      timeline.reversed(!timeline.reversed())
+    })
+  }
+
+  // gsap.fromTo('.reverse', {scale: 0, rotate: 90},{duration: 1.3, scale: 1, rotate: 0});
+</script>
+
+<html lang='en' class='dark'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body
+    class='bg-white dark:bg-neutral-900 text-black dark:text-white min-h-screen m-0 flex flex-col overflow-hidden'
+  >
+    <header class='header h-1/6 bg-sky-200'>
+      <nav class='nav'>
+        <ul
+          class='links flex items-center justify-around text-2xl py-2 text-sky-600'
+        >
+          <li class='link'><a href='/'>Left</a></li>
+          <li class='link'><a href='/blog'>Right</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class='content flex-grow flex justify-between text-2xl'>
+      <div
+        class='sidebar left w-1/6 bg-lime-200 text-lime-600 grid place-items-center'
+      >
+        <p>Left</p>
+      </div>
+      <button
+        class='bg-orange-200 text-orange-600 self-center p-1.5 px-3 rounded-md reverse'
+        >Reverse</button
+      >
+      <div
+        class='sidebar right w-1/6 bg-lime-200 text-lime-600 grid place-items-center'
+      >
+        Right
+      </div>
+    </main>
+    <footer
+      class='footer h-1/6 bg-red-200 text-red-600 text-2xl grid place-items-center py-2'
+    >
+      Footer
+    </footer>
+  </body>
+</html>
