@@ -34,7 +34,7 @@
       timeline.reverse().eventCallback('onReverseComplete', () => {
         setTimeout(() => {
           timeline.timeScale(1).play()
-        }, 1000)
+        }, 1500)
       })
     })
   }
@@ -51,9 +51,9 @@
     <title>Astro</title>
   </head>
   <body
-    class='bg-white dark:bg-neutral-900 text-black dark:text-white min-h-screen m-0 flex flex-col overflow-hidden'
+    class='bg-white dark:bg-neutral-900 text-black dark:text-white min-h-screen m-0 flex flex-col justify-between overflow-hidden'
   >
-    <header class='header flex-grow-[0.10] bg-sky-200 flex items-center'>
+    <header class='header flex-grow-[0.10] bg-sky-200 flex items-center z-20'>
       <nav class='nav w-full'>
         <ul
           class='links flex items-center justify-around text-2xl py-2 text-sky-600'
@@ -63,14 +63,17 @@
         </ul>
       </nav>
     </header>
-    <main class='content flex-grow flex justify-between text-2xl'>
+    <div class='flex-grow block'></div>
+    <main
+      class='content flex-grow flex justify-between text-2xl absolute w-full h-full z-10'
+    >
       <div
         class='sidebar left w-1/6 bg-lime-200 text-lime-600 grid place-items-center'
       >
         <p>Left</p>
       </div>
       <button
-        class='bg-orange-200 text-orange-600 self-center p-1.5 px-3 rounded-md reverse'
+        class='bg-orange-200 text-orange-600 self-center py-2.5 px-4 rounded-md reverse'
         >Reverse</button
       >
       <div
@@ -80,7 +83,7 @@
       </div>
     </main>
     <footer
-      class='footer flex-grow-[0.10] bg-red-200 text-red-600 text-2xl grid place-items-center py-2'
+      class='footer flex-grow-[0.10] bg-red-200 text-red-600 text-2xl grid place-items-center py-2 z-20'
     >
       Footer
     </footer>
